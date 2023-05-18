@@ -9,7 +9,7 @@ Input: reduced data cube
 2. Shift.py
 3. SolarReflectanceSlopes.py
 4. S'aperture.py
-Output: S' values for each observing night
+<br>Output: S' values for each observing night
 5. DisplayDustColour.py
 6. DisplayS'plotsMUSEvsLiterature.py
 
@@ -20,7 +20,7 @@ Input: reduced data cube
 3. MapExtraction.py 
 4. MedianCoaddMaps.py
 5. CropMaps.py
-Output: .fits files of dust emission maps
+<br>Output: .fits files of dust emission maps
 6. DisplayDustGrid.py
 
 ## Gas maps
@@ -32,7 +32,7 @@ Input: reduced data cube
 5. MapExtraction.py
 6. MedianCoaddMaps.py
 7. CropMaps.py
-Output: .fits files of gas emission maps
+<br>Output: .fits files of gas emission maps
 8. DisplayGasC2Grid.py
 9. DisplayGasNH2Grid.py
 10. DisplayGasCNGrid.py
