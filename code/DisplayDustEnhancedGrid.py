@@ -6,6 +6,9 @@ Created on Wed Feb 22 10:29:24 2023
 @author: sed79
 
 Displays a grid of the enhanced dust maps.
+
+Enhanced maps are from https://www.psi.edu/research/cometimen on the cropped dust maps. 
+Enhancement technique was azimuthal renormalisation, centre point was input as (111.5, 101.5), regions used x/y min and max, standard deviation for both theta and pixel values were 3.
 """
 
 import numpy as np

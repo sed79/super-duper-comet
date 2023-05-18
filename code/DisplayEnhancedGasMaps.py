@@ -7,6 +7,8 @@ Created on Tue Feb  7 15:58:16 2023
 
 Makes grid images of enhanced vs nonenhanced gas maps for each 
 C2, NH2, and CN separately.
+
+Enhanced maps are division by azimuthal median using https://www.psi.edu/research/cometimen on median coadded or cropped maps.
 """
 
 import os
