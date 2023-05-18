@@ -9,7 +9,9 @@ Input: reduced data cube
 2. Shift.py
 3. SolarReflectanceSlopes.py
 4. S'aperture.py
+
 <br>Output: S' values for each observing night
+
 5. DisplayDustColour.py
 6. DisplayS'plotsMUSEvsLiterature.py
 
