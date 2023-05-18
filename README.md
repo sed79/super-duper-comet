@@ -45,13 +45,10 @@ Input: reduced data cube
 
 ## Extra Figures/Tables/Data
 Figure of 2I's solar system trajectory: BigHero.py
-
-Figure comparing gases radial distribution: DisplaySpatialDistribution.py
-
-Grid of enhanced dust maps: DisplayDustEnhancedGrid.py
-
-Figure of production rates: DisplayProductionRates&BothRatios.py
-Comparison of gas map with stars in frame: 1. LambdaSum.py 2. DisplayCNvsStars.py
-Grid of enhanced gas maps: DisplayEnhancedGasMaps.py
-Table of key observating parameters: ObservationTable.py
-Calculating optocentre: 1. LambdaSum.py 2. CentroidCalc.py
+<br>Figure comparing gases radial distribution: DisplaySpatialDistribution.py
+<br>Grid of enhanced dust maps: DisplayDustEnhancedGrid.py
+<br>Figure of production rates: DisplayProductionRates&BothRatios.py
+<br>Comparison of gas map with stars in frame: 1. LambdaSum.py 2. DisplayCNvsStars.py
+<br>Grid of enhanced gas maps: DisplayEnhancedGasMaps.py
+<br>Table of key observating parameters: ObservationTable.py
+<br>Calculating optocentre: 1. LambdaSum.py 2. CentroidCalc.py
