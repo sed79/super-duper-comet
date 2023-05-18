@@ -22,7 +22,9 @@ Input: reduced data cube
 3. MapExtraction.py 
 4. MedianCoaddMaps.py
 5. CropMaps.py
+
 <br>Output: .fits files of dust emission maps
+
 6. DisplayDustGrid.py
 
 ## Gas maps
@@ -34,15 +36,20 @@ Input: reduced data cube
 5. MapExtraction.py
 6. MedianCoaddMaps.py
 7. CropMaps.py
+
 <br>Output: .fits files of gas emission maps
+
 8. DisplayGasC2Grid.py
 9. DisplayGasNH2Grid.py
 10. DisplayGasCNGrid.py
 
 ## Extra Figures/Tables/Data
 Figure of 2I's solar system trajectory: BigHero.py
+
 Figure comparing gases radial distribution: DisplaySpatialDistribution.py
+
 Grid of enhanced dust maps: DisplayDustEnhancedGrid.py
+
 Figure of production rates: DisplayProductionRates&BothRatios.py
 Comparison of gas map with stars in frame: 1. LambdaSum.py 2. DisplayCNvsStars.py
 Grid of enhanced gas maps: DisplayEnhancedGasMaps.py
