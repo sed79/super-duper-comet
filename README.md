@@ -1,4 +1,4 @@
-# Data analysis of a super-duper comet - 2I/Borisov
+# Data analysis of a super duper comet - 2I/Borisov
 
 This repo contains scripts and associated files for the data analysis of VLT/MUSE observations of the interstellar comet 2I/Borisov.
 Scripts are excecuted individually to perform separate steps of the analysis pipeline. They should be run in order as outlines below as scripts use files created by the previous step's script. Figures of data outputs are also created using scripts beginning with 'Display'. The pipeline begins with reduced IFU datacubes and create the following data products and associated figures.
