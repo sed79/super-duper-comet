@@ -3,8 +3,13 @@
 This repo contains scripts and associated files for the data analysis of VLT/MUSE observations of the interstellar comet 2I/Borisov.
 Scripts are excecuted individually to perform separate steps of the analysis pipeline. They should be run in order as outlines below as scripts use files created by the previous step's script. Figures of data outputs are also created using scripts beginning with 'Display'. The pipeline begins with reduced IFU datacubes and create the following data products and associated figures.
 
+## Apply Starkiller
+Input reduced data cube
+1. StarKiller.py
+Output cubes and all 'unstarkiller' cubes need to go into the same folder, DIFFCUBES
+
 ## Dust Colour (S')
-Input: reduced data cube
+Input: diff cubes
 1. MaskingExtremes.py
 2. Shift.py
 3. SolarReflectanceSlopes.py
@@ -16,7 +21,7 @@ Input: reduced data cube
 6. DisplayS'plotsMUSEvsLiterature.py
 
 ## Dust maps
-Input: reduced data cube
+Input: diff cubes
 1. MaskingExtremes.py
 2. Shift.py
 3. MapExtraction.py 
@@ -28,7 +33,7 @@ Input: reduced data cube
 6. DisplayDustGrid.py
 
 ## Gas maps
-Input: reduced data cube
+Input: diff cubes
 1. MaskingExtremes.py
 2. Shift.py
 3. DustSubtraction.py

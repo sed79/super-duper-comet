@@ -15,7 +15,7 @@ from mpdaf.obj import Cube
 import matplotlib.pyplot as plt
 from astropy.visualization import simple_norm
 
-directory = '../data/CUBES/'
+directory = '../data/DIFFCUBES/'
 
 for i, filename in enumerate(sorted(os.listdir(directory))):
     writename = filename[18:]

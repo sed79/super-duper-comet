@@ -6,6 +6,8 @@ Created on Sat May 20 10:55:43 2023
 @author: sophie
 
 reduce date by date with starkiller
+
+Just did cubes in 2020 and a single cube from 2019 - 2019-12-31T06-22-04.886
 """
 
 import os
