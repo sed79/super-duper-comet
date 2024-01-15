@@ -16,8 +16,7 @@ from mpdaf.obj import Cube
 from mpdaf.obj import iter_ima
 
 directory = '../data/ExtremesMasked/' #directory of cubes to be shifted
-center_list = '../extra/2I_Center_List.txt'
-#center_list = '../extra/2I_Center_List_Extra.txt' #more cubes to shift
+center_list = '../extra/2I_Center_List_master_updated_diffcubes.txt' # cubes to shift
 
 #lists to divide up the processing
 list1 = [0, 1, 2, 3, 4]
