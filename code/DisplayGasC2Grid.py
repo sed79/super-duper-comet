@@ -15,7 +15,7 @@ from astropy.visualization import simple_norm, ZScaleInterval, LinearStretch, Im
 from astropy.convolution import Gaussian2DKernel
 from astropy.convolution import convolve
 
-directory =  '../data/CroppedMaps/C2_ALL/' #240x240 C2 maps
+directory =  '../data/MedianCoaddedMaps/C2_ALL/' #400x400 C2 maps
 
 dates = ['2019-11-14', '2019-11-15', '2019-11-26', '2019-12-05', 
          '2019-12-06', '2019-12-21', '2019-12-23', '2019-12-29', 
@@ -33,19 +33,18 @@ def plot():
     numlevels = 12
     
     for ax, date in zip(axes,dates):
-        hdulist = fits.open(directory+'Cropped_C2_'+date+'.fits',ignore_missing_end=True)
-        if date == '2019-11-14':
-            imageuncrop = hdulist[1].data #file format different for 14-11-2019 data
-        else: 
-            imageuncrop = hdulist[0].data
-        image = imageuncrop[55:165,60:180]
+        hdulist = fits.open(directory+'C2_'+date+'.fits',ignore_missing_end=True)
+
+        imageuncrop = hdulist[0].data
+        imagecrop = imageuncrop[100:340, 90:330] # this cropping step is previously done in another script
+        image = imagecrop[55:165,60:180]
         kernel = Gaussian2DKernel(x_stddev=stddev)
         convimage = convolve(image, kernel)
     
         norm = ImageNormalize(data=image, interval=ZScaleInterval(), stretch=LinearStretch()) #
-        im = ax.pcolorfast(image, norm=norm, cmap='viridis_r')
-        ax.contour(convimage, levels=np.linspace(convimage.min(), convimage.max(), numlevels), colors='xkcd:dark gray', alpha=0.7,origin='lower', linewidths=0.75, zorder=1)
-        fig.colorbar(mpl.cm.ScalarMappable(norm=norm, cmap='viridis_r'),ax=ax, fraction=0.1, shrink=0.8, location='right', pad=0.02)
+        im = ax.pcolorfast(image, norm=norm, cmap='viridis')
+        ax.contour(convimage, levels=np.linspace(convimage.min(), convimage.max(), numlevels), colors='whitesmoke', alpha=0.7,origin='lower', linewidths=0.75, zorder=1)
+        fig.colorbar(mpl.cm.ScalarMappable(norm=norm, cmap='viridis'),ax=ax, fraction=0.1, shrink=0.8, location='right', pad=0.02)
         
         # Date annotation
         ax.text(80,100, date, color='white',fontsize=12, fontweight='bold',bbox=props)
@@ -87,12 +86,12 @@ def plot():
         centrepoint = 95
         ax.arrow(centrepoint-width/2, 10, width, 0, fc='w', ec='k', head_width=0,head_length=0,width=2,length_includes_head=True)
         ax.text(81, 14, "10,000 km", color='white',fontsize=10, fontweight='bold', bbox=props)
-        
+         
         ax.axis('off')
         ax.set_aspect('equal')
         plt.tight_layout()
         
-    plt.savefig('../output_images/GasC2Grid.pdf')
+    plt.savefig('../output_images/GasC2Grid_diff.pdf')
         
     return 
      

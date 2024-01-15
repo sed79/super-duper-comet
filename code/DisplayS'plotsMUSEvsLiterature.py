@@ -14,6 +14,11 @@ import matplotlib.pyplot as plt
 import matplotlib as mpl
 from matplotlib.legend_handler import HandlerTuple
 
+from scipy import stats
+import scipy.optimize as opt
+import statsmodels.api as sm
+import statsmodels
+
 perihelion_jd = 2458825.5
 data = pd.read_csv("../extra/LiteratureS'forPlotting.csv")
 dates = data['jd']-perihelion_jd

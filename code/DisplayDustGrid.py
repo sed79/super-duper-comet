@@ -15,7 +15,7 @@ from astropy.visualization import simple_norm, ZScaleInterval, LinearStretch, Im
 from astropy.convolution import Gaussian2DKernel
 from astropy.convolution import convolve
 
-directory =  '../data/CroppedMaps/DUST_ALL/' #240x240 Dust maps
+directory =  '../data/MedianCoaddedMaps/DUST_ALL/' #400x400 Dust maps
 
 dates = ['2019-11-14', '2019-11-15', '2019-11-26', '2019-12-05', 
          '2019-12-06', '2019-12-21', '2019-12-23', '2019-12-29', 
@@ -29,19 +29,18 @@ def plot():
     
     props = dict(boxstyle='square', facecolor='black', alpha=0.7, pad=0.2, edgecolor='k')
     stddev = 1
-    numlevels = 12
+    numlevels = 8
     
     for ax, date in zip(axes,dates):
-        hdulist = fits.open(directory+'Cropped_DUST_'+date+'.fits',ignore_missing_end=True)
-        if date == '2019-11-14':
-            imageuncrop = hdulist[1].data #file format different for 14-11-2019 data
-        else: 
-            imageuncrop = hdulist[0].data
-        image = imageuncrop[55:165,60:180]
+        hdulist = fits.open(directory+'DUST_'+date+'.fits',ignore_missing_end=True)
+
+        imageuncrop = hdulist[0].data      
+        imagecrop = imageuncrop[100:340, 90:330] # two cropping steps
+        image = imagecrop[55:165,60:180]
         kernel = Gaussian2DKernel(x_stddev=stddev)
         convimage = convolve(image, kernel)
     
-        norm = ImageNormalize(data=image, interval=PercentileInterval(99.5), stretch=LinearStretch())
+        norm = ImageNormalize(data=image, interval=PercentileInterval(99.95), stretch=LinearStretch())
         im = ax.pcolorfast(image, norm=norm, cmap='Greys_r')
         ax.contour(convimage, levels=np.linspace(convimage.min(), convimage.max(), numlevels), cmap='plasma', origin='lower', linewidths=0.75, zorder=1)
         
@@ -91,7 +90,7 @@ def plot():
         
         plt.tight_layout()
         
-    plt.savefig('../output_images/DustGrid.pdf')
+    #plt.savefig('../output_images/DustGrid_diff.pdf')
         
     return 
         

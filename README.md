@@ -26,11 +26,10 @@ Input: diff cubes
 2. Shift.py
 3. MapExtraction.py 
 4. MedianCoaddMaps.py
-5. CropMaps.py
 
 <br>Output: .fits files of dust emission maps
 
-6. DisplayDustGrid.py
+5. DisplayDustGrid.py
 
 ## Gas maps
 Input: diff cubes
@@ -40,16 +39,16 @@ Input: diff cubes
 4. CNSubtraction.py
 5. MapExtraction.py
 6. MedianCoaddMaps.py
-7. CropMaps.py
 
 <br>Output: .fits files of gas emission maps
 
-8. DisplayGasC2Grid.py
-9. DisplayGasNH2Grid.py
-10. DisplayGasCNGrid.py
+7. DisplayGasC2Grid.py
+8. DisplayGasNH2Grid.py
+9. DisplayGasCNGrid.py
 
 ## Extra Figures/Tables/Data
 Figure of 2I's solar system trajectory: BigHero.py
+<br>Figure comparing before and after using starkiller: BeforeandAfter.py
 <br>Figure comparing gases radial distribution: DisplaySpatialDistribution.py
 <br>Grid of enhanced dust maps: DisplayDustEnhancedGrid.py
 <br>Figure of production rates: DisplayProductionRates&BothRatios.py
