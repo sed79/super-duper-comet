@@ -6,7 +6,8 @@ Scripts are excecuted individually to perform separate steps of the analysis pip
 ## Apply Starkiller
 Input reduced data cube
 1. StarKiller.py
-Output cubes and all 'unstarkiller' cubes need to go into the same folder, DIFFCUBES
+
+<br>Output cubes and all 'unstarkiller' cubes need to go into the same folder, DIFFCUBES
 
 ## Dust Colour (S')
 Input: diff cubes
