@@ -53,6 +53,7 @@ Figure of 2I's solar system trajectory: BigHero.py
 <br>Figure comparing gases radial distribution: DisplaySpatialDistribution.py
 <br>Grid of enhanced dust maps: DisplayDustEnhancedGrid.py
 <br>Figure of production rates: DisplayProductionRates&BothRatios.py
+<br>Figure of pre/post splitting trends: DisplayChangesinProdRatesandS'.py
 <br>Comparison of gas map with stars in frame: 1. LambdaSum.py 2. DisplayCNvsStars.py
 <br>Grid of enhanced gas maps: DisplayEnhancedGasMaps.py
 <br>Table of key observating parameters: ObservationTable.py
