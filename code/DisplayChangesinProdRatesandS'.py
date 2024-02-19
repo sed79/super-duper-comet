@@ -20,6 +20,111 @@ datesMUSE = dataMUSE['jd']-perihelion_jd
 data = pd.read_csv("../extra/MUSEprodrates.csv")
 otherdata = pd.read_csv("../extra/otherprodrates.csv")
 
+# GENERATE CONFIDENCE INTERVALS - read data
+
+x = data['jd'][4:]
+x_ = data['jd'][4:-2]
+CIaxis = np.linspace(x.iloc[0]-4, x.iloc[-1]+4, 50) # extend each side of the data range for overlap with marker
+
+C2y = [x*10**24 for x in data['Q(C2)'][4:]]
+C2yerr = [x*10**24 for x in data['Q(C2) un'][4:]]
+
+C2y_ = [x*10**24 for x in data['Q(C2)'][4:-2]]
+C2yerr_ = [x*10**24 for x in data['Q(C2) un'][4:-2]]
+
+NH2y = [x*10**24 for x in data['Q(NH2)'][4:]]
+NH2yerr = [x*10**24 for x in data['Q(NH2) un'][4:]]
+
+NH2y_ = [x*10**24 for x in data['Q(NH2)'][4:-2]]
+NH2yerr_ = [x*10**24 for x in data['Q(NH2) un'][4:-2]]
+
+CNy = [x*10**24 for x in data['Q(CN)'][4:]]
+CNyerr = [x*10**24 for x in data['Q(CN) un'][4:]]
+
+CNy_ = [x*10**24 for x in data['Q(CN)'][4:-2]]
+CNyerr_ = [x*10**24 for x in data['Q(CN) un'][4:-2]]
+
+CoverCy = data['ratio Q(C2)/Q(CN)'][4:]
+CoverCy_ = data['ratio Q(C2)/Q(CN)'][4:-2]
+NoverCy = data['ratio Q(NH2)/Q(CN)'][4:]
+NoverCy_ = data['ratio Q(NH2)/Q(CN)'][4:-2]
+
+CoverCyerr = data['ratio Q(C2)/Q(CN) un'][4:]
+CoverCyerr_ = data['ratio Q(C2)/Q(CN) un'][4:-2]
+NoverCyerr = data['ratio Q(NH2)/Q(CN) un'][4:]
+NoverCyerr_ = data['ratio Q(NH2)/Q(CN) un'][4:-2]
+
+# DO LINE FITTING
+
+y = NH2y
+yerr = NH2yerr
+y_ = NH2y_
+yerr_ = NH2yerr_
+
+x_model = sm.add_constant(x_)
+wls_model = sm.regression.linear_model.WLS(y_, x_model, weights=[1/x**2 for x in yerr_]) #err_
+results = wls_model.fit()
+print(results.summary())
+M4 = [results.params[1], results.params[0], f'NH2 Weighted. p-value: {results.pvalues[1]:.6f}']
+predictions = results.get_prediction()
+# CI4 = predictions.conf_int(alpha=0.05)
+# CI4pred = predictions.conf_int(alpha=0.05, obs=False)
+
+CI4continuous = []
+for i in CIaxis:   
+    x0 = ([1, i])
+    s = results.get_prediction(x0)
+    interval = s.conf_int(alpha=0.05, obs=True) #obs True/False returns predictive/mean confidence interval. Changes betwee using standard error of observations or of mean.
+    CI4continuous.append([interval[0, 0], interval[0, 1]])
+CI4continuous = np.array(CI4continuous)
+
+y = C2y
+yerr = C2yerr
+y_ = C2y_
+yerr_ = C2yerr_
+
+x_model = sm.add_constant(x_)
+wls_model = sm.regression.linear_model.WLS(y_, x_model, weights=[1/x**2 for x in yerr_]) #err_
+results = wls_model.fit()
+print(results.summary())
+M5 = [results.params[1], results.params[0], f'C2 Weighted. p-value: {results.pvalues[1]:.6f}']
+predictions = results.get_prediction()
+
+CI5continuous = []
+for i in CIaxis:   
+    x0 = ([1, i])
+    s = results.get_prediction(x0)
+    interval = s.conf_int(alpha=0.05, obs=False) #obs True/False returns predictive/mean confidence interval. Changes betwee using standard error of observations or of mean.
+    CI5continuous.append([interval[0, 0], interval[0, 1]])
+CI5continuous = np.array(CI5continuous)
+
+
+
+y = CNy
+yerr = CNyerr
+y_ = CNy_
+yerr_ = CNyerr_
+
+x_model = sm.add_constant(x_)
+wls_model = sm.regression.linear_model.WLS(y_, x_model, weights=[1/x**2 for x in yerr_])  #err_
+results = wls_model.fit()
+print(results.summary())
+M6 = [results.params[1], results.params[0], f'CN Weighted. p-value: {results.pvalues[1]:.6f}']
+predictions = results.get_prediction()
+# CI6 = predictions.conf_int(alpha=0.05)
+# CI6pred = predictions.conf_int(alpha=0.05, obs=True)
+
+CI6continuous = []
+for i in CIaxis:   
+    x0 = ([1, i])
+    s = results.get_prediction(x0)
+    interval = s.conf_int(alpha=0.05, obs=False) #obs True/False returns predictive/mean confidence interval. Changes betwee using standard error of observations or of mean.
+    CI6continuous.append([interval[0, 0], interval[0, 1]])
+CI6continuous = np.array(CI6continuous)
+
+
+# NOW FOR DUST COLOUR
+
 x = datesMUSE
 y = dataMUSE["S"]
 err = dataMUSE['uncertainty']
@@ -34,7 +139,7 @@ x_model = sm.add_constant(x_)
 wls_model = sm.regression.linear_model.WLS(y_, x_model, weights=([1/x**2 for x in err_]))
 results = wls_model.fit()
 print(results.summary())
-M = [results.params[1], results.params[0], f'Excluding data, unweighted. p-value: {results.pvalues[1]:.6f}']
+M = [results.params[1], results.params[0], f'p-value: {results.pvalues[1]:.6f}']
 predictions = results.get_prediction()
 # CI = predictions.conf_int(alpha=0.05)
 # CIpred = predictions.conf_int(alpha=0.05, obs=True)
@@ -47,6 +152,9 @@ for i in CIxaxisS:
     interval = s.conf_int(alpha=0.05, obs=False)
     CIcontinuous.append([interval[0, 0], interval[0, 1]])
 CIcontinuous = np.array(CIcontinuous)
+
+
+# MAKE FIGURE
 
 gridspec = dict(hspace=0.0, height_ratios=[1, 0.04, 1, 0.04, 1, 0.5, 1])
 fig, axs = plt.subplots(nrows=7, ncols=1, figsize=(5,15), gridspec_kw=gridspec)
